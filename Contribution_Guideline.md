@@ -1,43 +1,29 @@
 # Contributing
 
 
-We love pull requests from everyone. By participating in this project, you
-agree to abide by the thoughtbot [code of conduct].
+We love to accept contributions from anyone. By participating in this project, you
+agree to abide by our Code of Conduct. 
 
-[code of conduct]: https://thoughtbot.com/open-source-code-of-conduct
+First 
 
 Fork, then clone the repo:
 
-    git clone git@github.com:your-username/factory_bot_rails.git
+    git clone https://github.com/UBC-MDS/PySyntext
 
-Set up your machine:
+Add upstream:
 
-    ./bin/setup
+    git remote add upstream https://github.com/UBC-MDS/PySyntext
 
-Make sure the tests pass:
 
-    rake
+Merge potential changes in upstream:
 
-Make your change. Add tests for your change. Make the tests pass:
+    git fetch upstream
+    git merge upstream/master
+    git push
 
-    rake
+Finally send us a pull request
 
-Push to your fork and [submit a pull request][pr].
-
-[pr]: https://github.com/thoughtbot/factory_bot_rails/compare/
-
-At this point you're waiting on us. We like to at least comment on pull requests
-within three business days (and, typically, one business day). We may suggest
-some changes or improvements or alternatives.
-
-Some things that will increase the chance that your pull request is accepted:
-
-* Write tests.
-* Follow our [style guide][style].
-* Write a [good commit message][commit].
-
-[style]: https://github.com/thoughtbot/guides/tree/master/style
-[commit]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+We will then review your pull request and get back to you as soon as possible. 
 
 Attribution:
 This contribution gbuideline is drawn from https://github.com/thoughtbot/factory_bot_rails/blob/master/CONTRIBUTING.md. 
