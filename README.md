@@ -9,6 +9,18 @@ Team Members
 | Alexander Pak | [pak-alex](https://github.com/pak-alex) |
 | Yenan Zhang |[YenanZ](https://github.com/YenanZ)  |
 
+### Summary
+
+There are many packages that cover summary statistics for numerical data. However, when it comes to text data, there is a lack of selection for packages of similar functionality. Our group would like to tackle this problem by creating `PySyntext`. This package will allow users to input passages and receive summary information and sentiment analysis on the text, giving the user valuable information on how best to proceed with their data.
+
+Sample functionality included in this package for a given text passage:
+
+* Most common word
+* Most frequent n-gram
+* Sentiment (Positive, Negative, Neutral)
+* Number of spelling mistakes
+* ...etc.
+
 
 ### Function 1: TextSummarize
 
@@ -131,3 +143,10 @@ The function takes in the following arguments:
 |---|---|---|
 | encoding | string | ‘utf-8’|
 | split_by | char | *space*  |
+
+
+### Python Ecosystem
+
+There are several popular Natural Language Processing packages that exist in the Python landscape. [NLTK](https://www.nltk.org/) and [spaCy](https://spacy.io/) are the most popular packages for dedicated natural language processing. [sci-kit learn](https://scikit-learn.org/stable/), another popular machine learning package, provides the framework for general machine learning models, and includes functions for text analysis.
+
+Although these packages provide the framework for tokenizing and fitting models to text data, it is difficult to create a quick-and-dirty summary of your data using these packages. By using PySyntext, summary and sentiment of text data is quickly achievable, allowing users to determine the worth of their dataset.
