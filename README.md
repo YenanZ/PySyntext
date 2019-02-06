@@ -1,5 +1,4 @@
 # PySyntext
-A python package to summarize text columns in a dataframe
 
 Team Members
 
@@ -17,14 +16,14 @@ Sample functionality included in this package for a given text passage:
 
 * Most common word
 * Most frequent n-gram
-* Sentiment (Positive, Negative, Neutral)
+* Overall Sentiment (Positive, Negative)
 * Number of spelling mistakes
 * ...etc.
 
 
-### Function 1: TextSummarize
+### Function 1: `TextSummarize`
 
-`TextSummarize` function of class `PySyntext` takes in `string` as an input and produces `DataFrame` as an output containing a quantitative summary of the input. The quantitative summary needs:
+`TextSummarize` function of class `PySyntext` takes in `string` as an input and produces `DataFrame` as an output containing a quantitative summary of the input. The quantitative summary entails the following:
 
 - Number of Words
 - Number of Sentences
@@ -62,7 +61,7 @@ The function takes in the following arguments:
 | gibberish_remove |  boolean | True  |
 | split_by | char | *space*  |
 
-### Function 2: TextGrams
+### Function 2: `TextGrams`
 
 `TextGrams` function of class `PySyntext` takes in `string` as an input and produces `DataFrame` as an output containing lists of top 5 ngrams. The top `k` ngrams and `n` are user based inputs with default values (k=5 and n=(2,3))
 
@@ -76,6 +75,7 @@ The function takes in the following arguments:
 |Column| Type|
 |---|---|
 | ngrams | list |
+
 *Number of rows are dependent on the input  `n` of the user*
 *Size of the list is dependent on the input `k` of the user*
 
@@ -94,7 +94,7 @@ The function takes in the following arguments:
 | gibberish_remove |  boolean | True  |
 | split_by | char | *space*  |
 
-### Function 3: TextQuality
+### Function 3: `TextQuality`
 
 `extQuality` function of class `PySyntext` takes in `string` as an input and produces `DataFrame` as an output a qualitative summary of the input. The qualitative summary would include the following:
 
@@ -120,7 +120,7 @@ The function takes in the following arguments:
 | encoding | string | ‘utf-8’|
 | split_by | char | *space*  |
 
-### Function 4: TextTags
+### Function 4: `TextTags`
 
 `TextTags` function of class `PySyntext` takes in `string` as an input and produces `DataFrame` as an output containing a summary of parts of speech tags.
 
