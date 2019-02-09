@@ -129,7 +129,9 @@ The function takes in the following arguments:
 | Output | DataFrame |
 
 <br>
+
 #### Output: Dataframe
+
 <br>
 
 |Column Name| spell_error | toxicity |
@@ -152,3 +154,9 @@ The function takes in the following arguments:
 There are several popular Natural Language Processing packages that exist in the Python landscape. [NLTK](https://www.nltk.org/) and [spaCy](https://spacy.io/) are the most popular packages for dedicated natural language processing. [sci-kit learn](https://scikit-learn.org/stable/), another popular machine learning package, provides the framework for general machine learning models, and includes functions for text analysis.
 
 Although these packages provide the framework for tokenizing and fitting models to text data, it is difficult to create a quick-and-dirty summary of your data using these packages. By using PySyntext, summary and sentiment of text data is quickly achievable, allowing users to determine the worth of their dataset.
+
+### Dependencies
+
+* pandas
+* numpy
+* NLTK
