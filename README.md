@@ -32,27 +32,31 @@ Sample functionality included in this package for a given text passage:
 - Average Word Length
 - Average Sentence Length
 
+<br>
+
 | Name | Type |
 |---|---|
-| Input | String |
-| Output | Dataframe |
+| Input | str |
+| Output | DataFrame |
+
+<br>
 
 #### Output: Dataframe
+<br>
 
-| Column | Type|
-|---|---|
-| word_count | int |
-| sentence_count | int |
-| most_common | list of String |
-| least_common | list of String |
-| avg_word_len | int |
-| avg_sentence_len| int |
+| Column Name | word_count | sentence_count | most_common|least_common | avg_word_len |avg_sentence_len|
+|---|---|---|---|---|---|---|
+|Type| int |int | list of str |list of str | int | int |
+
+<br>
 
 The function takes in the following arguments:
 
+<br>
+
 | Name | Type | Default|
 |---|---|---|
-| passage | str | NA |  
+| text | str | NA |  
 | stopwords_remove | boolean | True |
 | lemmatize | boolean | False |
 | remove_punctuation | boolean | True |
@@ -60,30 +64,46 @@ The function takes in the following arguments:
 | case_sensitive |  boolean | False |
 | gibberish_remove |  boolean | True  |
 
+<br>
 
 ### Function 2: `text_grams`
 
 `text_grams` function of class `PySyntext` takes in `string` as an input and produces `DataFrame` as an output containing lists of top 5 ngrams. The top `k` ngrams and `n` are user based inputs with default values (k=5 and n=(2,3))
 
+<br>
+
 | Name | Type |
 |---|---|
-| Input | String |
-| Output | Dataframe |
+| Input | str |
+| Output | DataFrame |
+
+<br>
 
 #### Output: Dataframe
 
-| Column | Type|
+<br>
+
+| Column Name | ngrams |
 |---|---|
-| ngrams | list |
+|Type| list of str |
+
+<br>
+
+`For Example: k=1, n=(2,3)`
+
+| Column Name | bigrams | trigrams |
+|---|---|---|
+|0| ("hello world") | ("hello world program")
 
 *Number of rows are dependent on the input  `n` of the user*
 *Size of the list is dependent on the input `k` of the user*
 
 The function takes in the following arguments:
+<br>
 
 | Name | Type | Default|
 |---|---|---|
-| string | str | NA |
+| text | str | NA |
 | k | int | 5 |
 | n | int,list | (2,3) |
 | stopwords_remove | boolean | True |
@@ -93,32 +113,39 @@ The function takes in the following arguments:
 | case_sensitive |  boolean | False |
 | gibberish_remove |  boolean | True  |
 
+<br>
 
 ### Function 3: `text_quality`
 
 `text_quality` function of class `PySyntext` takes in `string` as an input and produces `DataFrame` as an output a qualitative summary of the input. The qualitative summary would include the following:
 
 - Spelling Mistakes: Words spelt wrong/Total words
-- Overall Sentiment: "Positive" or "Negative"
+- Toxicity: Abusive or Slang words used/ Total Words
+<br>
 
 | Name | Type |
 |---|---|
-| Input | String |
-| Output | Dataframe |
+| Input | str |
+| Output | DataFrame |
 
+<br>
 #### Output: Dataframe
+<br>
 
-|Column| Type|
-|---|---|
-| spell_error | float |
-| toxicity | float |
+|Column Name| spell_error | toxicity |
+|---|---|---|
+| Type| float | float |
+
+<br>
 
 The function takes in the following arguments:
+<br>
 
 | Name | Type | Default|
 |---|---|---|
-| string | str | NA |
+| text | str | NA |
 
+<br>
 
 ### Python Ecosystem
 
