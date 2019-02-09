@@ -24,6 +24,7 @@ on the input string.
 
 import pytest
 import pandas as pd
+import numpy as np
 from PySyntext.text_quality import text_quality
 
 
@@ -132,7 +133,7 @@ def test_output_spell_error():
 
     output = text_quality(string=x)
     
-    assert output.spell_error[0]>=0.14 & output.spell_error[0]<=0.16
+    assert output.spell_error[0]>=0.14 and output.spell_error[0]<=0.16
     
 
 def test_output_toxicity():
@@ -143,4 +144,4 @@ def test_output_toxicity():
 
     output = text_quality(string=x)
     
-    assert output.toxicity[0]>=0.06 & output.spell_error[0]<=0.09
+    assert output.toxicity[0]>=0.06 and output.toxicity[0]<=0.09
