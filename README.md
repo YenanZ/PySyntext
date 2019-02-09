@@ -39,7 +39,7 @@ Sample functionality included in this package for a given text passage:
 
 #### Output: Dataframe
 
-|Column| Type|
+| Column | Type|
 |---|---|
 | word_count | int |
 | sentence_count | int |
@@ -52,14 +52,15 @@ The function takes in the following arguments:
 
 | Name | Type | Default|
 |---|---|---|
+| string | str | NA |  
+| stopwords_remove | boolean | True |
 | stopwords_remove | boolean | True |
 | lemitize | boolean | False |
-| encoding | string | ‘utf-8’|
 | remove_punctuation | boolean | True |
 | remove_numbers |  boolean | True |
 | case_sensitive |  boolean | False |
 | gibberish_remove |  boolean | True  |
-| split_by | char | *space*  |
+
 
 ### Function 2: `TextGrams`
 
@@ -72,7 +73,7 @@ The function takes in the following arguments:
 
 #### Output: Dataframe
 
-|Column| Type|
+| Column | Type|
 |---|---|
 | ngrams | list |
 
@@ -83,20 +84,20 @@ The function takes in the following arguments:
 
 | Name | Type | Default|
 |---|---|---|
+| string | str | NA |
 | k | int | 5 |
 | n | int,list | (2,3) |
 | stopwords_remove | boolean | True |
 | lemitize | boolean | False |
-| encoding | string | ‘utf-8’|
 | remove_punctuation | boolean | True |
 | remove_numbers |  boolean | True |
 | case_sensitive |  boolean | False |
 | gibberish_remove |  boolean | True  |
-| split_by | char | *space*  |
+
 
 ### Function 3: `TextQuality`
 
-`extQuality` function of class `PySyntext` takes in `string` as an input and produces `DataFrame` as an output a qualitative summary of the input. The qualitative summary would include the following:
+`TextQuality` function of class `PySyntext` takes in `string` as an input and produces `DataFrame` as an output a qualitative summary of the input. The qualitative summary would include the following:
 
 - Spelling Mistakes: Words spelt wrong/Total words
 - Overall Sentiment: "Positive" or "Negative"
@@ -110,43 +111,14 @@ The function takes in the following arguments:
 
 |Column| Type|
 |---|---|
-| spell_mistake | float |
-| sentiment | string |
+| spell_error | float |
+| toxicity | float |
 
 The function takes in the following arguments:
 
 | Name | Type | Default|
 |---|---|---|
-| encoding | string | ‘utf-8’|
-| split_by | char | *space*  |
-
-### Function 4: `TextTags`
-
-`TextTags` function of class `PySyntext` takes in `string` as an input and produces `DataFrame` as an output containing a summary of parts of speech tags.
-
-- Number of nouns
-- Number of verbs
-- Number of adjectives
-
-| Name | Type |
-|---|---|
-| Input | String |
-| Output | Dataframe |
-
-#### Output: Dataframe
-
-|Column| Type|
-|---|---|
-| nouns | int |
-| verbs | int |
-| adjectives | int |
-
-The function takes in the following arguments:
-
-| Name | Type | Default|
-|---|---|---|
-| encoding | string | ‘utf-8’|
-| split_by | char | *space*  |
+| string | str | NA |
 
 
 ### Python Ecosystem
