@@ -32,18 +32,27 @@ Sample functionality included in this package for a given text passage:
 - Average Word Length
 - Average Sentence Length
 
+<br>
+
 | Name | Type |
 |---|---|
 | Input | str |
 | Output | DataFrame |
 
+<br>
+
 #### Output: Dataframe
+<br>
 
 | Column Name | word_count | sentence_count | most_common|least_common | avg_word_len |avg_sentence_len|
 |---|---|---|---|---|---|---|
 |Type| int |int | list of str |list of str | int | int |
 
+<br>
+
 The function takes in the following arguments:
+
+<br>
 
 | Name | Type | Default|
 |---|---|---|
@@ -55,23 +64,31 @@ The function takes in the following arguments:
 | case_sensitive |  boolean | False |
 | gibberish_remove |  boolean | True  |
 
+<br>
 
 ### Function 2: `text_grams`
 
 `text_grams` function of class `PySyntext` takes in `string` as an input and produces `DataFrame` as an output containing lists of top 5 ngrams. The top `k` ngrams and `n` are user based inputs with default values (k=5 and n=(2,3))
+
+<br>
 
 | Name | Type |
 |---|---|
 | Input | str |
 | Output | DataFrame |
 
+<br>
+
 #### Output: Dataframe
+<br>
 
 | Column Name | ngrams |
 |---|---|
 |Type| list of str |
 
-`For Example:`
+<br>
+
+`For Example: k=1, n=(2,3)`
 
 | Column Name | bigrams | trigrams |
 |---|---|
@@ -81,6 +98,7 @@ The function takes in the following arguments:
 *Size of the list is dependent on the input `k` of the user*
 
 The function takes in the following arguments:
+<br>
 
 | Name | Type | Default|
 |---|---|---|
@@ -94,6 +112,7 @@ The function takes in the following arguments:
 | case_sensitive |  boolean | False |
 | gibberish_remove |  boolean | True  |
 
+<br><br>
 
 ### Function 3: `text_quality`
 
@@ -101,25 +120,31 @@ The function takes in the following arguments:
 
 - Spelling Mistakes: Words spelt wrong/Total words
 - Toxicity: Abusive or Slang words used/ Total Words
+<br>
 
 | Name | Type |
 |---|---|
 | Input | str |
 | Output | DataFrame |
 
+<br>
 #### Output: Dataframe
+<br>
 
 |Column Name| spell_error | toxicity |
 |---|---|---|
 | Type| float | float |
 
+<br>
 
 The function takes in the following arguments:
+<br>
 
 | Name | Type | Default|
 |---|---|---|
 | text | str | NA |
 
+<br>
 
 ### Python Ecosystem
 
