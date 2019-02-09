@@ -21,9 +21,9 @@ Sample functionality included in this package for a given text passage:
 * ...etc.
 
 
-### Function 1: `TextSummarize`
+### Function 1: `text_summarize`
 
-`TextSummarize` function of class `PySyntext` takes in `string` as an input and produces `DataFrame` as an output containing a quantitative summary of the input. The quantitative summary entails the following:
+`text_summarize` function of class `PySyntext` takes in `string` as an input and produces `DataFrame` as an output containing a quantitative summary of the input. The quantitative summary entails the following:
 
 - Number of Words
 - Number of Sentences
@@ -62,9 +62,9 @@ The function takes in the following arguments:
 | gibberish_remove |  boolean | True  |
 
 
-### Function 2: `TextGrams`
+### Function 2: `text_grams`
 
-`TextGrams` function of class `PySyntext` takes in `string` as an input and produces `DataFrame` as an output containing lists of top 5 ngrams. The top `k` ngrams and `n` are user based inputs with default values (k=5 and n=(2,3))
+`text_grams` function of class `PySyntext` takes in `string` as an input and produces `DataFrame` as an output containing lists of top 5 ngrams. The top `k` ngrams and `n` are user based inputs with default values (k=5 and n=(2,3))
 
 | Name | Type |
 |---|---|
@@ -95,9 +95,9 @@ The function takes in the following arguments:
 | gibberish_remove |  boolean | True  |
 
 
-### Function 3: `TextQuality`
+### Function 3: `text_quality`
 
-`TextQuality` function of class `PySyntext` takes in `string` as an input and produces `DataFrame` as an output a qualitative summary of the input. The qualitative summary would include the following:
+`text_quality` function of class `PySyntext` takes in `string` as an input and produces `DataFrame` as an output a qualitative summary of the input. The qualitative summary would include the following:
 
 - Spelling Mistakes: Words spelt wrong/Total words
 - Overall Sentiment: "Positive" or "Negative"
