@@ -25,6 +25,8 @@ on the input string.
 import pytest
 import numpy
 import pandas as pd
+import sys
+sys.path.insert(0, os.path.abspath(".."))
 from PySyntext.text_quality import text_quality
 
 

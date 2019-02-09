@@ -54,12 +54,11 @@ def text_quality(string):
         in the input contains and the second column stores
         toxicity in the the input string.
 
-    """
 
     Examples
     --------
-    >>> text = """This str has words spelllll wrong.
-    This string has a slag word shitty."""
+    >>> text = "This str has words spelllll wrong.
+    This string has a slag word shitty."
     >>> PySyntext.text_quality(text)
 
     # Example output, generate a dict then turn it into the output DataFrame

@@ -1,5 +1,7 @@
 ## function text_summarize, as part of PySyntext
 
+import pandas as pd
+
 def text_summarize(passage):
 
     """
@@ -62,13 +64,17 @@ def text_summarize(passage):
     answer = {
         'word_count' : 17,
         'sentence_count' : 3,
-        'most_common' : 'This',
+        'most_common' : [['This']],
         'least_common' : [['first', 'in', 'second', 'third']],
         'avg_word_len' : 4.35,
         'avg_sentence_len' : 5.67
     }
     pd.DataFrame.from_dict(answer)
     """
+    
+    keys = ['word_count', 'sentence_count', 'most_common', 'least_common', 'avg_word_len', 'avg_sentence_len']
 
-    summary = pd.DataFrame()
+    summary = {key: [None] for key in keys}
+    summary = pd.DataFrame.from_dict(summary)
+    
     return summary
