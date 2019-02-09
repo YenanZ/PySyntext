@@ -52,7 +52,7 @@ The function takes in the following arguments:
 
 | Name | Type | Default|
 |---|---|---|
-| passage | str | NA |  
+| text | str | NA |  
 | stopwords_remove | boolean | True |
 | lemmatize | boolean | False |
 | remove_punctuation | boolean | True |
