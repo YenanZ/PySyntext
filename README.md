@@ -34,19 +34,14 @@ Sample functionality included in this package for a given text passage:
 
 | Name | Type |
 |---|---|
-| Input | String |
-| Output | Dataframe |
+| Input | str |
+| Output | DataFrame |
 
 #### Output: Dataframe
 
-| Column | Type|
-|---|---|
-| word_count | int |
-| sentence_count | int |
-| most_common | list of String |
-| least_common | list of String |
-| avg_word_len | int |
-| avg_sentence_len| int |
+| Column Name | word_count | sentence_count | most_common|least_common | avg_word_len |avg_sentence_len|
+|---|---|---|---|---|---|---|
+|Type| int |int | list of str |list of str | int | int |
 
 The function takes in the following arguments:
 
@@ -67,14 +62,20 @@ The function takes in the following arguments:
 
 | Name | Type |
 |---|---|
-| Input | String |
-| Output | Dataframe |
+| Input | str |
+| Output | DataFrame |
 
 #### Output: Dataframe
 
-| Column | Type|
+| Column Name | ngrams |
 |---|---|
-| ngrams | list |
+|Type| list of str |
+
+`For Example:`
+
+| Column Name | bigrams | trigrams |
+|---|---|
+|0| ("hello world") | ("hello world program")
 
 *Number of rows are dependent on the input  `n` of the user*
 *Size of the list is dependent on the input `k` of the user*
@@ -83,7 +84,7 @@ The function takes in the following arguments:
 
 | Name | Type | Default|
 |---|---|---|
-| string | str | NA |
+| text | str | NA |
 | k | int | 5 |
 | n | int,list | (2,3) |
 | stopwords_remove | boolean | True |
@@ -99,25 +100,25 @@ The function takes in the following arguments:
 `text_quality` function of class `PySyntext` takes in `string` as an input and produces `DataFrame` as an output a qualitative summary of the input. The qualitative summary would include the following:
 
 - Spelling Mistakes: Words spelt wrong/Total words
-- Overall Sentiment: "Positive" or "Negative"
+- Toxicity: Abusive or Slang words used/ Total Words
 
 | Name | Type |
 |---|---|
-| Input | String |
-| Output | Dataframe |
+| Input | str |
+| Output | DataFrame |
 
 #### Output: Dataframe
 
-|Column| Type|
-|---|---|
-| spell_error | float |
-| toxicity | float |
+|Column Name| spell_error | toxicity |
+|---|---|---|
+| Type| float | float |
+
 
 The function takes in the following arguments:
 
 | Name | Type | Default|
 |---|---|---|
-| string | str | NA |
+| text | str | NA |
 
 
 ### Python Ecosystem
