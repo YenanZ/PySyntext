@@ -2,7 +2,7 @@
 
 """
 
-Created on 09 February, 2019
+Created on February, 2019
 
 
 
@@ -23,8 +23,8 @@ on the input string.
 """
 
 import pytest
+import numpy
 import pandas as pd
-import numpy as np
 from PySyntext.text_quality import text_quality
 
 
@@ -45,16 +45,16 @@ def test_output_type():
     Test that output is of type list
     """
 
-    assert(type(text_quality(string=x)) == type(pd.DataFrame()))
+    assert(type(text_quality(text=x)) == type(pd.DataFrame()))
 
     
-def test_output_contains_float():
+def test_output_float():
 
     """
     Test that output contains floats only
     """
 
-    output = text_quality(string=x)
+    output = text_quality(text=x)
     
     assert isinstance(output.spell_error[0], numpy.float64) | isinstance(output.spell_error[0], float)
     assert isinstance(output.toxicity[0], numpy.float64) | isinstance(output.spell_error[0], float)
@@ -66,64 +66,62 @@ def test_output_positive():
     Test that output contains non-negative floats
     (since the spelling errors and toxicity by definition of
     this function cannot be negative)
-
     """
 
-    output = text_quality(string=x)
+    output = text_quality(text=x)
     
     assert output.spell_error[0]>=0
     assert output.toxicity[0]>=0
 
 
-def test_input_type1():
+
+
+def verify_input1():
 
     """
-    Test for error if input type is not a string
+    Test if input string is valid
     """
 
-    try:
-        text_quality(string=123)
+    text = 100
 
-    except:
-        assert True
+    with pytest.raises(ValueError) as e:
 
-    else:
-        assert False
+        text_quality(text)
 
+    assert str(e.value) == "Input must be a string"
 
 
-def test_input_type2():
+
+def verify_input2():
 
     """
-    Test for error if input string is empty
+    Test if input is not empty
     """
+
+    text = " "
+
+    with pytest.raises(ValueError) as e:
+
+        text_quality(text)
+
+    assert str(e.value) == "Input must be a string"
     
-    try:
-        text_quality(string="")
 
-    except:
-        assert True
+def verify_input3():
 
-    else:
-        assert False
+     """
+     Test if input string is valid
+     """
+
+    text = "!#$*()&^%$#@!{}{{{}}}"
+
+    with pytest.raises(ValueError) as e:
+
+        text_quality(text)
+
+    assert str(e.value) == "Input has no text"
 
 
-
-def test_input_type3():
-
-    """
-    Test for error if input string has only punctuations
-    """
-
-    try:
-        text_quality(string="\!@#$%^&*{}{{{{}}}}")
-
-    except:
-        assert True
-
-    else:
-        assert False
-        
 
 def test_output_spell_error():
 
@@ -131,7 +129,7 @@ def test_output_spell_error():
     Test that spell error gives expected output
     """
 
-    output = text_quality(string=x)
+    output = text_quality(text=x)
     
     assert output.spell_error[0]>=0.14 and output.spell_error[0]<=0.16
     
@@ -142,6 +140,6 @@ def test_output_toxicity():
     Test that toxicity gives expected output
     """
 
-    output = text_quality(string=x)
+    output = text_quality(text=x)
     
     assert output.toxicity[0]>=0.06 and output.toxicity[0]<=0.09

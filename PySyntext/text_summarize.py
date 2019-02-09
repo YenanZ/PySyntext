@@ -1,1 +1,1 @@
-## function TextSummarize
+## function text_summarize

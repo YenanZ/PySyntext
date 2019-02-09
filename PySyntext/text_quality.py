@@ -2,7 +2,7 @@
 
 """
 
-Created on 08 February, 2019
+Created on 09 February, 2019
 
 
 @author: Harjyot Kaur
@@ -38,7 +38,7 @@ def text_quality(string):
 
     ----------
 
-    string : str
+    text : str
 
         input string ti be analyzed
         given by the user
