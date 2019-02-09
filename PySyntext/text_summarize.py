@@ -18,7 +18,7 @@ def text_summarize(passage):
         Remove common stop words (ex. 'and', 'the', 'him') from `passage`.
     lemmatize : Boolean
         If True, lemmatize every word in `passage`.
-        More info for how lemmatize works can be found in NLTK docs. 
+        More info for how lemmatize works can be found in NLTK docs.
     remove_punctuation : Boolean
         If True, strip `passage` of punctuation.
     remove_numbers : Boolean
@@ -60,11 +60,11 @@ def text_summarize(passage):
 
     # Example output, generate a dict then turn it into the output DataFrame
     answer = {
-        'word_count' : 17
-        'sentence_count' : 3
-        'most_common' : 'This'
-        'least_common' : ['first', 'in', 'second', 'third']
-        'avg_word_len' : 4.35
+        'word_count' : 17,
+        'sentence_count' : 3,
+        'most_common' : 'This',
+        'least_common' : [['first', 'in', 'second', 'third']],
+        'avg_word_len' : 4.35,
         'avg_sentence_len' : 5.67
     }
     pd.DataFrame.from_dict(answer)
