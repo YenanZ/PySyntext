@@ -80,6 +80,7 @@ The function takes in the following arguments:
 <br>
 
 #### Output: Dataframe
+
 <br>
 
 | Column Name | ngrams |
