@@ -52,10 +52,9 @@ The function takes in the following arguments:
 
 | Name | Type | Default|
 |---|---|---|
-| string | str | NA |  
+| passage | str | NA |  
 | stopwords_remove | boolean | True |
-| stopwords_remove | boolean | True |
-| lemitize | boolean | False |
+| lemmatize | boolean | False |
 | remove_punctuation | boolean | True |
 | remove_numbers |  boolean | True |
 | case_sensitive |  boolean | False |
