@@ -2,9 +2,10 @@
 
 
 We love to accept contributions from anyone. By participating in this project, you
-agree to abide by our Code of Conduct. 
+agree to abide by our [Code of Conduct](https://github.com/UBC-MDS/PySyntext/blob/master/Code_of_conduct.md
+).
 
-First 
+First
 
 Fork, then clone the repo:
 
@@ -12,7 +13,7 @@ Fork, then clone the repo:
 
 Add upstream:
 
-    git remote add upstream https://github.com/UBC-MDS/PySyntext
+    git remote add upstream https://github.com/UBC-MDS/PySyntext.git
 
 
 Merge potential changes in upstream:
@@ -23,7 +24,7 @@ Merge potential changes in upstream:
 
 Finally send us a pull request
 
-We will then review your pull request and get back to you as soon as possible. 
+We will then review your pull request and get back to you as soon as possible.
 
 Attribution:
-This contribution gbuideline is drawn from https://github.com/thoughtbot/factory_bot_rails/blob/master/CONTRIBUTING.md. 
+This contribution guideline is drawn from [CONTRIBUTING.md.](https://github.com/thoughtbot/factory_bot_rails/blob/master/CONTRIBUTING.md). 
