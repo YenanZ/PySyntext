@@ -45,7 +45,7 @@ df  = df.append([{"spell_error": 0.15,"toxicity": 0.08}])
 def test_output_type():
 
     """
-    Test that output is of type list
+    Test that output is of type DataFrame
     """
 
     assert(type(text_quality(text=x)) == type(pd.DataFrame()))
@@ -54,7 +54,7 @@ def test_output_type():
 def test_output_float():
 
     """
-    Test that output contains floats only
+    Test that output contains floats
     """
 
     output = text_quality(text=x)
@@ -66,7 +66,7 @@ def test_output_float():
 def test_output_positive():
 
     """
-    Test that output contains non-negative floats
+    Test that output contains non-negatives
     (since the spelling errors and toxicity by definition of
     this function cannot be negative)
     """
@@ -82,7 +82,7 @@ def test_output_positive():
 def verify_input1():
 
     """
-    Test if input string is valid
+    Test if input string is valid (not numeric)
     """
 
     text = 100
@@ -113,7 +113,7 @@ def verify_input2():
 def verify_input3():
 
      """
-     Test if input string is valid
+     Test if input string is valid (not special characters)
      """
 
     text = "!#$*()&^%$#@!{}{{{}}}"
