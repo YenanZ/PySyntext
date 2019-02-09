@@ -2,7 +2,7 @@
 
 """
 
-Created on February, 2019
+Created on 09 February, 2019
 
 
 
@@ -48,7 +48,7 @@ def test_output_type():
     assert(type(text_quality(string=x)) == type(pd.DataFrame()))
 
     
-def test_output_float():
+def test_output_contains_float():
 
     """
     Test that output contains floats only
@@ -75,7 +75,7 @@ def test_output_positive():
     assert output.toxicity[0]>=0
 
 
-def test_input_data_type1():
+def test_input_type1():
 
     """
     Test for error if input type is not a string
@@ -92,7 +92,7 @@ def test_input_data_type1():
 
 
 
-def test_input_data_type2():
+def test_input_type2():
 
     """
     Test for error if input string is empty
@@ -109,7 +109,7 @@ def test_input_data_type2():
 
 
 
-def test_input_data_type3():
+def test_input_type3():
 
     """
     Test for error if input string has only punctuations
