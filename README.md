@@ -43,8 +43,8 @@ Sample functionality included in this package for a given text passage:
 |---|---|
 | word_count | int |
 | sentence_count | int |
-| most_common | int |
-| least_common | int |
+| most_common | list of String |
+| least_common | list of String |
 | avg_word_len | int |
 | avg_sentence_len| int |
 
