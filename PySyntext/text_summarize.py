@@ -18,7 +18,7 @@ def text_summarize(passage):
         Remove common stop words (ex. 'and', 'the', 'him') from `passage`.
     lemmatize : Boolean
         If True, lemmatize every word in `passage`.
-        More info for how lemmatize works can be found in NLTK docs. 
+        More info for how lemmatize works can be found in NLTK docs.
     remove_punctuation : Boolean
         If True, strip `passage` of punctuation.
     remove_numbers : Boolean
