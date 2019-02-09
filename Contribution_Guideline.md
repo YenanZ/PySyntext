@@ -27,4 +27,4 @@ Finally send us a pull request
 We will then review your pull request and get back to you as soon as possible.
 
 Attribution:
-This contribution guideline is drawn from [CONTRIBUTING.md.](https://github.com/thoughtbot/factory_bot_rails/blob/master/CONTRIBUTING.md). 
+This contribution guideline is drawn from [CONTRIBUTING.md](https://github.com/thoughtbot/factory_bot_rails/blob/master/CONTRIBUTING.md).

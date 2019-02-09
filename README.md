@@ -91,7 +91,7 @@ The function takes in the following arguments:
 `For Example: k=1, n=(2,3)`
 
 | Column Name | bigrams | trigrams |
-|---|---|
+|---|---|---|
 |0| ("hello world") | ("hello world program")
 
 *Number of rows are dependent on the input  `n` of the user*
@@ -112,7 +112,7 @@ The function takes in the following arguments:
 | case_sensitive |  boolean | False |
 | gibberish_remove |  boolean | True  |
 
-<br><br>
+<br>
 
 ### Function 3: `text_quality`
 
