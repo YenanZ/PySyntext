@@ -13,12 +13,12 @@ This script tests the text_quality function of the PySyntext package.
 
 
 
-text_quality function of the PySyntext package, checks the 
+text_quality function of the PySyntext package, checks the
 quality of the string in terms of spelling errors and toxicity content.
 It takes in a string as input and returns a dataframe.
-    
-The function performs necessary cleaning 
-on the input string. 
+
+The function performs necessary cleaning
+on the input string.
 
 """
 
@@ -43,14 +43,14 @@ df  = df.append([{"spell_error": 0.15,"toxicity": 0.08}])
 
 
 def test_output_type():
-    
+
     """
     Test that output is of type list
     """
 
     assert(type(text_quality(text=x)) == type(pd.DataFrame()))
 
-    
+
 def test_output_float():
 
     """
@@ -58,7 +58,7 @@ def test_output_float():
     """
 
     output = text_quality(text=x)
-    
+
     assert isinstance(output.spell_error[0], numpy.float64) | isinstance(output.spell_error[0], float)
     assert isinstance(output.toxicity[0], numpy.float64) | isinstance(output.spell_error[0], float)
 
@@ -72,7 +72,7 @@ def test_output_positive():
     """
 
     output = text_quality(text=x)
-    
+
     assert output.spell_error[0]>=0
     assert output.toxicity[0]>=0
 
@@ -108,7 +108,7 @@ def verify_input2():
         text_quality(text)
 
     assert str(e.value) == "Input must be a string"
-    
+
 
 def verify_input3():
 
@@ -133,9 +133,9 @@ def test_output_spell_error():
     """
 
     output = text_quality(text=x)
-    
+
     assert output.spell_error[0]>=0.14 and output.spell_error[0]<=0.16
-    
+
 
 def test_output_toxicity():
 
@@ -144,5 +144,5 @@ def test_output_toxicity():
     """
 
     output = text_quality(text=x)
-    
+
     assert output.toxicity[0]>=0.06 and output.toxicity[0]<=0.09
