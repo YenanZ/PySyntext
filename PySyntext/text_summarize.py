@@ -17,14 +17,14 @@ def text_summarize(passage):
     text : String
         The string to be analyzed.
     stopwords_remove : Boolean
-        Remove common stop words (ex. 'and', 'the', 'him') from `passage`.
+        Remove common stop words (ex. 'and', 'the', 'him') from `text`.
     lemmatize : Boolean
-        If True, lemmatize every word in `passage`.
+        If True, lemmatize every word in `text`.
         More info for how lemmatize works can be found in NLTK docs.
     remove_punctuation : Boolean
-        If True, strip `passage` of punctuation.
+        If True, strip `text` of punctuation.
     remove_numbers : Boolean
-        If True, strip `passage` of numbers.
+        If True, strip `text` of numbers.
     case_sensitive : Boolean
         If True, text_summarize will be case sensitive (ex. "this" and
         "This" will be two separate words).
@@ -36,23 +36,23 @@ def text_summarize(passage):
     -------
     DataFrame
         word_count : Int
-            The total number of words in `passage`.
+            The total number of words in `text`.
         sentence_count : Int
-            the total number of sentences in `passage`.
+            the total number of sentences in `text`.
         most_common : List of String
-            A list of the most common words in `passage`. If this returns a
+            A list of the most common words in `text`. If this returns a
             list of length 1, there is only one most common word. If this
             returns a list of length > 1, there are multiple words that appear
-            the most number of times in `passage`.
+            the most number of times in `text`.
         least_common : List of String
-            A list of the least common words in `passage`. If this returns a
+            A list of the least common words in `text`. If this returns a
             list of length 1, there is only one least common word. If this
             returns a list of length > 1, there are multiple words that appear
-            the least number of times in `passage`.
+            the least number of times in `text`.
         avg_word_len : float
-            The average word length in `passage`.
+            The average word length in `text`.
         avg_sentence_len : float
-            The average number of words in a sentence, in `passage`.
+            The average number of words in a sentence, in `text`.
 
     Examples
     --------
