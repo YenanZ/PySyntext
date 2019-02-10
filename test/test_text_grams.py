@@ -31,13 +31,13 @@ def verify_output(x):
     ex_output = text_grams(x)
     assert type(ex_output) == type(pd.DataFrame())
     assert type(ex_output.bigrams[0]) == list and and all(isinstance(n, str) for n in ex_output.bigrams[0])
-    
-    
+
+
 # test output matches arguments passed
 def verify_output_and_arguments(x):
     ex_output = text_grams(x)
     assert  len(ex_output.bigrams[0])==k
-    assert  len(ex_output)==n
+    assert  len(ex_output)==n-1
 
 
 # test datatype inside output dataframe
@@ -45,7 +45,7 @@ def verify_output(x):
     ex_output = text_grams(x)
     assert type(ex_output) == type(pd.DataFrame())
     assert type(ex_output.bigrams[0]) == list and and all(isinstance(n, str) for n in ex_output.bigrams[0])
-    
+
 
 
 # test to verify if function raises for invalid input
@@ -79,7 +79,7 @@ def verify_input2():
 
     assert str(e.value) == "Input must be a string"
 
-    
+
 # test to verify if function raises for invalid input
 def verify_input3():
 
@@ -94,11 +94,3 @@ def verify_input3():
         text_grams(text)
 
     assert str(e.value) == "Input has no text"
-
-
-
-
-
-    
-
-    
