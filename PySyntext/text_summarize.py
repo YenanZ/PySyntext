@@ -14,7 +14,7 @@ def text_summarize(passage):
 
     Parameters
     ----------
-    passage : String
+    text : String
         The string to be analyzed.
     stopwords_remove : Boolean
         Remove common stop words (ex. 'and', 'the', 'him') from `passage`.
