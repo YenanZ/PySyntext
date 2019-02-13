@@ -1,6 +1,11 @@
 ## function text_summarize, as part of PySyntext
 
 import pandas as pd
+import re 
+import nltk
+nltk.download('punkt')
+from nltk.tokenize import sent_tokenize
+from collections import Counter
 
 def text_summarize(passage):
 
