@@ -72,9 +72,43 @@ def text_summarize(passage):
     pd.DataFrame.from_dict(answer)
     """
     
+    split_passage=passage.split()
+    
+    # word count
+    word_count=len(split_passage)
+    
+    # count number of sentences
+    
+    # method 1
+    # sentence_count=len(re.findall(r'\.', passage )
+    # method 2
+    sentence_count= len(sent_tokenize(passage))
+    
+    # most common words
+    counter = Counter(split_passage) 
+    most_common = counter.most_common(1)[0][0]
+    
+    # least common 
+    # please help 
+    
+    # average word length
+    avg_word_len= sum(len(word) for word in split_passage) / len(split_passage)
+    
+    # average sentence length
+    # please help 
+    
+    
+    # I'm having some trouble making this into a dataframe, I'm returning a list for now
     keys = ['word_count', 'sentence_count', 'most_common', 'least_common', 'avg_word_len', 'avg_sentence_len']
-
     summary = {key: [None] for key in keys}
     summary = pd.DataFrame.from_dict(summary)
     
-    return summary
+    # return list 
+    return [word_count, sentence_count,most_common, avg_word_len]
+
+
+# you can see the output
+
+ex_passage = "This is the first sentence in this paragraph. \
+                      This is the second sentence. This is the third."
+text_summarize(ex_passage)
