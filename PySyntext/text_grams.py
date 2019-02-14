@@ -19,6 +19,7 @@ import string
 import re
 from nltk.corpus import stopwords
 import collections as collect
+import pytest
 #nltk.download("stopwords")
 #nltk.download('averaged_perceptron_tagger')
 
@@ -131,7 +132,7 @@ def pre_processing(text, case_sensitive = False, stop_remove = True):
     # Remove stop words if conditional is true
     if stop_remove:
         pattern = re.compile(r'\b(' + r'|'.join(stopwords.words('english')) + r')\b\s*')
-    text = pattern.sub('', text)
+        text = pattern.sub('', text)
 
     return text
 
@@ -205,6 +206,30 @@ def text_grams(text, k = 5, n = [2, 3], stop_remove = True, lemitize = False, re
     pd.DataFrame.from_dict(grams)
     """
     
+    # Check all variables are valid:
+    
+    # Check parameters are boolean
+    if type(stop_remove) != bool or type(remove_punctuation) != bool or type(remove_number) != bool or type(case_sensitive) != bool: 
+        raise ValueError("Test parameters must be boolean.")
+    # Check if text is a string
+    if type(text) != str:
+        raise ValueError("Input must be a string")
+    # Check text is not empty
+    if not text.split(): 
+        raise ValueError("Input text is empty.")
+    # Check k >= 0
+    if k < 0: 
+        raise ValueError("k must be 0 or greater")
+    # Check n is not empty
+    if not n:
+        raise ValueError("n must have at least one positive value")
+    # Check all valid values of n
+    if len(n) > 0 and any(i < 0 for i in n):
+        raise ValueError("Values of n must be greater than 0")
+
+    
+    
+    
     # Initialize variables
     ngrams_list = []
     ngrams_dfs = []
@@ -242,8 +267,11 @@ def text_grams(text, k = 5, n = [2, 3], stop_remove = True, lemitize = False, re
         ngrams_dfs.append(pd.DataFrame.from_records([list(i) for i in list_of_top_grams], columns = [lbls[0], "Number of Instances"]))
         lbls.pop(0)
         
-    for i in range(len(ngrams_dfs)-1):
-        final_df = pd.concat([ngrams_dfs[0].reset_index(drop = True), ngrams_dfs[i+1]], axis = 1)
+    if len(n) == 1:
+        final_df = ngrams_dfs[0]
+    else:
+        for i in range(len(ngrams_dfs)-1):
+            final_df = pd.concat([ngrams_dfs[0].reset_index(drop = True), ngrams_dfs[i+1]], axis = 1)
     
 
     return final_df
