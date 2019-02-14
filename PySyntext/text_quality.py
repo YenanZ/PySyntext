@@ -18,7 +18,6 @@ import re
 import string
 import nltk.tag
 from nltk import pos_tag
-from nltk.corpus import stopwords
 
 
 
@@ -90,11 +89,12 @@ def clean(text):
 
     Examples
     --------
-    >>>text="RT $USD @Amila #Test\nTom\'s newly listed Co. &amp; Mary\'s unlisted Group to supply tech for nlTK.\nh.. $TSLA $AAPL https://  t.co/x34afsfQsh'"
+    >>>text="RT $USD @Amila #Test\nTom\'s newly listed Co. &amp; Mary\'s unlisted Group to supply tech for 
+            nlTK.\nh.. $TSLA $AAPL https://  t.co/x34afsfQsh'"
     
     >>> clean(text)
     
-    'RT  @Amila #Test\nTom's newly listed Co. &amp; Mary's unlisted Group to supply tech for nlTK.\nh..   https:// t.co/x34afsfQsh' 
+    'RT   Amila  TestTom s newly listed Co   amp  Mary s unlisted Group to supply tech for  nlTK h    '
     
     """
     # remove tickers
@@ -140,7 +140,7 @@ def spell_check(word_list,text):
 
     -------
 
-    list
+    set
     
         list of words spelt wrong
        
@@ -148,7 +148,7 @@ def spell_check(word_list,text):
         
         count of words spelt wrong
         
-    double
+    float
     
         proportion of words spelt wrong in the entire text
     
@@ -158,34 +158,61 @@ def spell_check(word_list,text):
     >>> text="I thikn you should go for clas todat"
     >>> spell_check(eng_words,text)
     
-    ({'clas', 'thikn', 'todat'}, 3, 0.08333333333333333)
+    {'spell_error': [{'clas', 'thikn', 'todat'}],
+     'count_spell_error': 3,
+     'proportion_spell_error': 0.375}
     
     """
-    # remove english words
-    non_eng_words=set(text.split()).difference(word_list)
+    
+    spell_error_dict={'spell_error': [set()], 
+                          'count_spell_error': 0, 
+                          'proportion_spell_error':0.0}
+        
+    # get mispelt words
+    non_eng_words=list(set(text.split()).difference(word_list))
+
+    
+    
+    
     
     if len(non_eng_words)!=0:
+        
         # remove proper-nouns and prepositions
         tagged_sentence = nltk.tag.pos_tag(non_eng_words)
-
+        
+        
         tagged_non_nouns=list(filter(lambda tagged_sentence: tagged_sentence[1] != 'NNP' and 
                                 tagged_sentence[1] != 'NNPS' and
                                  tagged_sentence[1] != 'PRP', tagged_sentence))
+    
+        if len(tagged_non_nouns)!=0:
+            removed_nouns=list(next(zip(*tagged_non_nouns)))
+            
+            
+            # spelling errors
+            spell_error=set(map(str.lower,removed_nouns)).difference(word_list)
+            
 
-        removed_nouns=list(next(zip(*tagged_non_nouns)))
+            if len(spell_error)!=0:
+                #remove wrong words
+                pattern = re.compile(r'\b(' + r'|'.join(spell_error) + r')\b\s*')
+                text_spell_error = (pattern.sub('', text)).split()
+                count_spell_error= len(text.split())-len(text_spell_error)
+                
+                return {'spell_error': [spell_error], 
+                        'count_spell_error': count_spell_error, 
+                        'proportion_spell_error':count_spell_error/len(text.split())}
+            
+            else:
+                return spell_error_dict
+            
+        else:
+            return spell_error_dict
 
-        # spelling errors
-        spell_error=set(map(str.lower,removed_nouns)).difference(word_list)
         
-        return {'spell_error': [spell_error], 
-                'count_spell_error': len(spell_error), 
-                'proportion_spell_error':len(spell_error)/len(text.split())}
     else:
-        spell_error=set()
         
-        return {'spell_error': [spell_error], 
-                'count_spell_error': len(spell_error), 
-                'proportion_spell_error':0.0}
+        return spell_error_dict
 
 
 def toxicity_check(word_list,text):
@@ -211,7 +238,7 @@ def toxicity_check(word_list,text):
 
     -------
 
-    list
+    set
     
         list of words that are profane
        
@@ -219,7 +246,7 @@ def toxicity_check(word_list,text):
         
         count of words that are profane
         
-    double
+    float
     
         proportion of words that are profane in the entire text
     
@@ -229,21 +256,34 @@ def toxicity_check(word_list,text):
     >>> text="this is so shitty"
     >>> toxicity_check(toxic_words,text)
     
-    ({'shitty'}, 1, 0.058823529411764705)
+    {'toxic_words': [{'shitty'}],
+     'count_toxic_words': 1,
+     'proportion_toxic_words': 0.25}
     
     """
+    toxic_content= {'toxic_words': [set()], 
+                    'count_toxic_words': 0, 
+                    'proportion_toxic_words': 0.0}
+
     if len(text.split())!=0:
         toxic_words=set(text.split()).intersection(word_list)
-
-        return {'toxic_words': [toxic_words], 
-                'count_toxic_words': len(toxic_words), 
-                'proportion_toxic_words':len(toxic_words)/len(text.split())}
-    else:
-        toxic_words=set()
         
-        return {'toxic_words': [toxic_words], 
-                'count_toxic_words': len(toxic_words), 
-                'proportion_toxic_words': 0.0}
+        if len(toxic_words)!=0:
+            #remove toxic words
+            pattern = re.compile(r'\b(' + r'|'.join(toxic_words) + r')\b\s*')
+            text_toxic_words = (pattern.sub('', text)).split()
+            count_toxic_words = len(text.split())-len(text_toxic_words)
+            
+
+            return {'toxic_words': [toxic_words], 
+                    'count_toxic_words': count_toxic_words, 
+                    'proportion_toxic_words':count_toxic_words/len(text.split())}
+        else:
+            return toxic_content
+    else:
+        return toxic_content
+        
+        
     
 def text_quality(text):
 
@@ -269,7 +309,7 @@ def text_quality(text):
 
     text : str
 
-        input string ti be analyzed
+        input string to be analyzed
         given by the user
 
 
