@@ -37,7 +37,7 @@ x = "This str has words spelllll wrong. This string has a slag word shitty."
 
 # sample output
 df = pd.DataFrame(columns=['spell_error','toxicity'])
-df  = df.append([{"spell_error": 0.15,"toxicity": 0.08}])
+df  = df.append([{"spell_error":0.076923,"toxicity": 0.076923}])
 
 
 
