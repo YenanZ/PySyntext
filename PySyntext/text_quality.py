@@ -19,8 +19,12 @@ import re
 import string
 import nltk.tag
 from nltk import pos_tag
+<<<<<<< HEAD
 from resources.eng_words import eng_words
 from resources.toxic_words import toxic_words
+=======
+import pytest
+>>>>>>> origin
 
 
 
@@ -344,6 +348,21 @@ def text_quality(text):
 
     pd.DataFrame.from_dict(quality)
     """
+<<<<<<< HEAD
+=======
+    
+
+    # Check if text is a string
+    if type(text) != str:
+        raise ValueError("Input must be a string")
+    # Check text is not empty
+    if not text.split(): 
+        raise ValueError("Input text is empty.")
+        
+    # load word sets
+    eng_words=load_words('resources/words.txt')
+    toxic_words = load_words('resources/en_profane_words.txt')
+>>>>>>> origin
     
     # cleaning and calling spell_check,toxicity_check
     cleaned_text=clean(text)
