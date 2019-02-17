@@ -21,6 +21,7 @@ import nltk.tag
 from nltk import pos_tag
 from resources.eng_words import eng_words
 from resources.toxic_words import toxic_words
+import pytest
 
 
 
@@ -344,6 +345,15 @@ def text_quality(text):
 
     pd.DataFrame.from_dict(quality)
     """
+
+    # Check if text is a string
+    if type(text) != str:
+        raise ValueError("Input must be a string")
+    # Check text is not empty
+    if not text.split(): 
+        raise ValueError("Input text is empty.")
+        
+   
     
     # cleaning and calling spell_check,toxicity_check
     cleaned_text=clean(text)
