@@ -18,6 +18,8 @@ setup(
 
     url='https://github.com/UBC-MDS/PySyntext',
 
+    include_package_data=True,
+
     license='LICENSE.txt',
 
     description='Text Summarization Tools',
@@ -27,11 +29,11 @@ setup(
     install_requires=[
 
         'pandas>=0.23.4',
-        
+
         'nltk>=3.4',
-    
+
         'pytest>=3.5.1',
-        
+
         ]
 
 )
