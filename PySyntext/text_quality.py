@@ -19,8 +19,8 @@ import re
 import string
 import nltk.tag
 from nltk import pos_tag
-from resources.eng_words import eng_words
-from resources.toxic_words import toxic_words
+from PySyntext.eng_words import eng_words
+from PySyntext.toxic_words import toxic_words
 
 
 
