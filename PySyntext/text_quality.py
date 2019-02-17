@@ -18,6 +18,7 @@ import re
 import string
 import nltk.tag
 from nltk import pos_tag
+import pytest
 
 
 
@@ -341,6 +342,15 @@ def text_quality(text):
 
     pd.DataFrame.from_dict(quality)
     """
+    
+
+    # Check if text is a string
+    if type(text) != str:
+        raise ValueError("Input must be a string")
+    # Check text is not empty
+    if not text.split(): 
+        raise ValueError("Input text is empty.")
+        
     # load word sets
     eng_words=load_words('resources/words.txt')
     toxic_words = load_words('resources/en_profane_words.txt')
