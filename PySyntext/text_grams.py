@@ -23,31 +23,6 @@ import pytest
 #nltk.download("stopwords")
 #nltk.download('averaged_perceptron_tagger')
 
-def load_words(path):
-    """
-    Loads words from a text file
-    Parameters
-    ----------
-    path : str
-        
-        path of the text file
-    Returns
-    -------
-    set
-        A set of all words in the text file
-    Examples
-    --------
-    >>> load_words('resources/words.txt')
-    {Aar,
-     Aara,
-     Aarau,
-    ....}
-    """
-    
-    with open(path) as word_file:
-        valid_words = set(word_file.read().split())
-       
-    return valid_words
 
 def clean(text, remove_punctuation = True, remove_number = True):
     """
