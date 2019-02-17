@@ -13,11 +13,14 @@ Implementation of text_quality function in the PySyntext package.
 """
 
 # load packages
+import os
 import pandas as pd
 import re
 import string
 import nltk.tag
 from nltk import pos_tag
+from resources.eng_words import eng_words
+from resources.toxic_words import toxic_words
 import pytest
 
 
@@ -342,7 +345,6 @@ def text_quality(text):
 
     pd.DataFrame.from_dict(quality)
     """
-    
 
     # Check if text is a string
     if type(text) != str:
@@ -351,9 +353,7 @@ def text_quality(text):
     if not text.split(): 
         raise ValueError("Input text is empty.")
         
-    # load word sets
-    eng_words=load_words('resources/words.txt')
-    toxic_words = load_words('resources/en_profane_words.txt')
+   
     
     # cleaning and calling spell_check,toxicity_check
     cleaned_text=clean(text)
