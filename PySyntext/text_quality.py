@@ -20,7 +20,7 @@ import string
 import nltk.tag
 from nltk import pos_tag
 from PySyntext.eng_words import eng_words
-from PySyntext.toxic_words import toxic_words
+from PySyntext.profane_words import profane_words
 
 
 
@@ -348,7 +348,7 @@ def text_quality(text):
     # cleaning and calling spell_check,toxicity_check
     cleaned_text=clean(text)
     spelling_errors=spell_check(eng_words,cleaned_text)
-    toxic_words=toxicity_check(toxic_words,cleaned_text)
+    toxic_words=toxicity_check(profane_words,cleaned_text)
 
     # compiling outputs
     quality = pd.DataFrame(dict(**spelling_errors,**toxic_words))
