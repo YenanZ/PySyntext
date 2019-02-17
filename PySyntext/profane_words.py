@@ -1,4 +1,4 @@
-toxic_words = {'@$$',
+profane_words = {'@$$',
  'ahole',
  'amcik',
  'andskota',
