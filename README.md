@@ -58,7 +58,7 @@ Sample functionality included in this package for a given text passage:
 | Name | Type | Default|
 |---|---|---|
 | text | str | NA |  
-| stopwords_remove | boolean | True |
+| stopwords_remove | boolean | False |
 | lemmatize | boolean | False |
 | remove_punctuation | boolean | True |
 | remove_numbers |  boolean | True |
