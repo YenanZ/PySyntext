@@ -37,7 +37,12 @@ x = "This str has words spelllll wrong. This string has a slag word shitty."
 
 # sample output
 df = pd.DataFrame(columns=['spell_error','toxicity'])
-df  = df.append([{"spell_error":0.076923,"toxicity": 0.076923}])
+df  = df.append([{"spell_error":{'spelllll'},
+                  "count_spell_error":1,
+                  "proportion_spell_error":0.076923,
+                  "toxic_words": {'shitty'},
+                  "count_toxic_words":1,
+                  "proportion_toxic_words":0.076923}])
 
 
 
@@ -59,8 +64,8 @@ def test_output_float():
 
     output = text_quality(text=x)
 
-    assert isinstance(output.spell_error[0], numpy.float64) | isinstance(output.spell_error[0], float)
-    assert isinstance(output.toxicity[0], numpy.float64) | isinstance(output.spell_error[0], float)
+    assert isinstance(output['proportion_spell_error'], numpy.float64) | isinstance(output.spell_error[0], float)
+    assert isinstance(output['proportion_toxic_words'], numpy.float64) | isinstance(output.spell_error[0], float)
 
 
 def test_output_positive():
@@ -109,20 +114,6 @@ def verify_input2():
 
     assert str(e.value) == "Input must be a string"
 
-
-def verify_input3():
-
-     """
-     Test if input string is valid (not special characters)
-     """
-
-    text = "!#$*()&^%$#@!{}{{{}}}"
-
-    with pytest.raises(ValueError) as e:
-
-        text_quality(text)
-
-    assert str(e.value) == "Input has no text"
 
 
 
