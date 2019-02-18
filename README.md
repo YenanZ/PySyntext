@@ -1,5 +1,7 @@
 # PySyntext
 
+<img src="logo.PNG" width="100">
+
 Team Members
 
 |Name | Github |
@@ -8,7 +10,7 @@ Team Members
 | Alexander Pak | [pak-alex](https://github.com/pak-alex) |
 | Yenan Zhang |[YenanZ](https://github.com/YenanZ)  |
 
-### Summary
+## Summary
 
 There are many packages that cover summary statistics for numerical data. However, when it comes to text data, there is a lack of selection for packages of similar functionality. Our group would like to tackle this problem by creating `PySyntext`. This package will allow users to input passages and receive summary information and sentiment analysis on the text, giving the user valuable information on how best to proceed with their data.
 
@@ -21,7 +23,19 @@ Sample functionality included in this package for a given text passage:
 * ...etc.
 
 
-### Function 1: `text_summarize`
+## Usage Scenario
+
+#### Installation
+
+ * Open command prompt as `administrator` and type the following to download the package.
+
+ `pip install git+https://github.com/UBC-MDS/PySyntext.git`
+
+
+
+## Functions Include:
+
+#### Function 1: `text_summarize`
 
 `text_summarize` function of class `PySyntext` takes in `string` as an input and produces `DataFrame` as an output containing a quantitative summary of the input. The quantitative summary entails the following:
 
@@ -41,19 +55,6 @@ Sample functionality included in this package for a given text passage:
 
 <br>
 
-#### Output: Dataframe
-<br>
-
-| Column Name | word_count | sentence_count | most_common|least_common | avg_word_len |avg_sentence_len|
-|---|---|---|---|---|---|---|
-|Type| int |int | list of str |list of str | int | int |
-
-<br>
-
-The function takes in the following arguments:
-
-<br>
-
 | Name | Type | Default|
 |---|---|---|
 | text | str | NA |  
@@ -63,6 +64,26 @@ The function takes in the following arguments:
 | remove_numbers |  boolean | True |
 | case_sensitive |  boolean | False |
 | gibberish_remove |  boolean | True  |
+
+<br>
+
+#### Example:
+
+```
+import PySyntext
+
+text="This is the first sentence in this paragraph. This is the second sentence. This is the third."
+
+PySyntext.text_summarize(text)
+
+```
+
+Output
+-------
+
+|word_count|sentence_count|most_common|least_common|avg_word_len|avg_sentence_len|
+|---|---|---|---|---|---|
+|17|3|[this]|[first, in, paragraph, second, third]|4.352941|30.333333|
 
 <br>
 
@@ -77,28 +98,9 @@ The function takes in the following arguments:
 | Input | str |
 | Output | DataFrame |
 
-<br>
-
-#### Output: Dataframe
-
-<br>
-
-| Column Name | ngrams |
-|---|---|
-|Type| list of str |
-
-<br>
-
-`For Example: k=1, n=(2,3)`
-
-| Column Name | bigrams | trigrams |
-|---|---|---|
-|0| ("hello world") | ("hello world program")
-
-*Number of rows are dependent on the input  `n` of the user*
-*Size of the list is dependent on the input `k` of the user*
 
 The function takes in the following arguments:
+
 <br>
 
 | Name | Type | Default|
@@ -115,12 +117,38 @@ The function takes in the following arguments:
 
 <br>
 
+```
+import PySyntext
+
+text="This is the first sentence in this paragraph. This is the second sentence. This is the third."
+
+PySyntext.text_grams(text)
+
+```
+
+
+Output
+-------
+
+|2gram|Number of Instances|3gram|Number of Instances|
+|---|---|---|---|
+|(first, sentence)|1|(first, sentence, paragraph)|1|
+|(sentence, paragraph)|1|NaN|NaN|
+|(second, sentence)|1|NaN|NaN`
+
+<br>
+
 ### Function 3: `text_quality`
 
 `text_quality` function of class `PySyntext` takes in `string` as an input and produces `DataFrame` as an output a qualitative summary of the input. The qualitative summary would include the following:
 
-- Spelling Mistakes: Words spelt wrong/Total words
-- Toxicity: Abusive or Slang words used/ Total Words
+- Spelling Mistakes: List of words spelt wrong
+- Count of words spelt wrong: Count of words spelt wrong
+- Proportion of words spelt wrong: Words spelt wrong /Total words
+- Toxic Words: List of Abusive or Slang words used
+- Count of toxic words: Count of toxic words
+- Proportion of toxic words: Count of toxic words /Total words
+
 <br>
 
 | Name | Type |
@@ -130,17 +158,8 @@ The function takes in the following arguments:
 
 <br>
 
-#### Output: Dataframe
-
-<br>
-
-|Column Name| spell_error | toxicity |
-|---|---|---|
-| Type| float | float |
-
-<br>
-
 The function takes in the following arguments:
+
 <br>
 
 | Name | Type | Default|
@@ -149,14 +168,26 @@ The function takes in the following arguments:
 
 <br>
 
-### Python Ecosystem
+```
+import PySyntext
 
-There are several popular Natural Language Processing packages that exist in the Python landscape. [NLTK](https://www.nltk.org/) and [spaCy](https://spacy.io/) are the most popular packages for dedicated natural language processing. [sci-kit learn](https://scikit-learn.org/stable/), another popular machine learning package, provides the framework for general machine learning models, and includes functions for text analysis.
+text="This is the wrng. This is shitty."
 
-Although these packages provide the framework for tokenizing and fitting models to text data, it is difficult to create a quick-and-dirty summary of your data using these packages. By using PySyntext, summary and sentiment of text data is quickly achievable, allowing users to determine the worth of their dataset.
+PySyntext.text_quality(text)
+
+```
+
+Output
+-------
+
+|spell_error|count_spell_error|proportion_spell_error|toxic_words|count_toxic_words|proportion_toxic_words|
+|---|---|---|---|---|---|
+|{wrng}|1|0.142857|{shitty}|1|0.142857|
+
+<br>
 
 ### Dependencies
 
 * pandas
 * numpy
-* NLTK
+* nltk
