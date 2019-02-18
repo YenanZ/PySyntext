@@ -36,14 +36,12 @@ from PySyntext.text_quality import text_quality
 x = "This str has words spelllll wrong. This string has a slag word shitty."
 
 # sample output
-df = pd.DataFrame(columns=['spell_error','toxicity'])
-df  = df.append([{"spell_error":{'spelllll'},
-                  "count_spell_error":1,
-                  "proportion_spell_error":0.076923,
-                  "toxic_words": {'shitty'},
-                  "count_toxic_words":1,
-                  "proportion_toxic_words":0.076923}])
-
+df = pd.DataFrame({'spell_error': [{'spelllll'}],
+                   'count_spell_error': 1,
+                   'proportion_spell_error': 0.07692307692307693,
+                   'toxic_words': [{'shitty'}],
+                   'count_toxic_words': 1,
+                   'proportion_toxic_words': 0.07692307692307693})
 
 
 
@@ -54,33 +52,6 @@ def test_output_type():
     """
 
     assert(type(text_quality(text=x)) == type(pd.DataFrame()))
-
-
-def test_output_float():
-
-    """
-    Test that output contains floats
-    """
-
-    output = text_quality(text=x)
-
-    assert isinstance(output['proportion_spell_error'], numpy.float64) | isinstance(output.spell_error[0], float)
-    assert isinstance(output['proportion_toxic_words'], numpy.float64) | isinstance(output.spell_error[0], float)
-
-
-def test_output_positive():
-
-    """
-    Test that output contains non-negatives
-    (since the spelling errors and toxicity by definition of
-    this function cannot be negative)
-    """
-
-    output = text_quality(text=x)
-
-    assert output.spell_error[0]>=0
-    assert output.toxicity[0]>=0
-
 
 
 
@@ -114,26 +85,3 @@ def verify_input2():
 
     assert str(e.value) == "Input must be a string"
 
-
-
-
-def test_output_spell_error():
-
-    """
-    Test that spell error gives expected output
-    """
-
-    output = text_quality(text=x)
-
-    assert output.spell_error[0]>=0.14 and output.spell_error[0]<=0.16
-
-
-def test_output_toxicity():
-
-    """
-    Test that toxicity gives expected output
-    """
-
-    output = text_quality(text=x)
-
-    assert output.toxicity[0]>=0.06 and output.toxicity[0]<=0.09

@@ -27,80 +27,80 @@ import pytest
 def clean(text, remove_punctuation = True, remove_number = True):
     """
     Remove tickers, special characters, links and numerical strings
-    
+
     Parameters
     ----------
-    text : str        
+    text : str
         User given input
     remove_punctuation : Boolean
         Check if user would like to remove punctuation
     remove_number : Boolean
         Check if user would like to remove numerical strings
-        
+
     Returns
     -------
     str
         cleaned text
-        
+
     Examples
     --------
     >>> text="RT $USD @Amila #Test\nTom\'s newly listed Co. &amp; Mary\'s unlisted Group to supply tech for nlTK.\nh.. $TSLA $AAPL https://  t.co/x34afsfQsh'"
     >>> clean(text)
-    
-    'RT   Amila  TestTom s newly listed Co   amp  Mary s unlisted Group to supply tech for nlTK h' 
+
+    'RT   Amila  TestTom s newly listed Co   amp  Mary s unlisted Group to supply tech for nlTK h'
     """
-    
+
     # Need to keep periods, question marks, and exclamation marks for sentence endings
     punct_wo_endings = string.punctuation.replace('.', '').replace('!', '').replace('?', '')
-    
+
     # Remove tickers, new lines, and webpage links from text
     remove_tickers=re.sub(r'\$\w*','',text)
     remove_newline=re.sub(r'\n','',remove_tickers)
     remove_links=re.sub(r'https?:\/\/.*\/\w*','',remove_newline)
-    
+
     # Check if user wants to remove punctuation
     if remove_punctuation:
         remove_punctuation=remove_links.translate({ord(char): None for char in punct_wo_endings})
     else:
         remove_punctuation = remove_links
-        
+
     # Check if user wants to remove numerical strings
-    if remove_number: 
+    if remove_number:
         remove_numeric_words=re.sub(r'\b[0-9]+\b\s*', '',remove_punctuation)
     else:
         remove_numeric_words = remove_punctuation
-    
+
     clean_text = remove_numeric_words
-    
+
     return clean_text
 
 def pre_processing(text, case_sensitive = False, stop_remove = True):
     """
-    Checks if user wants to make all strings lower case, and if user wants to remove 
+    Checks if user wants to make all strings lower case, and if user wants to remove
     stop words
-    
+
     Parameters
     ----------
-    text : str        
+    text : str
         User given input
     case_sensitive : Boolean
         Check if user would like to treat Upper and lower case separately
     stop_remove : Boolean
         Check if user would like to remove stop words
-        
+
     Returns
     -------
     str
         cleaned text
-        
+
     Examples
     --------
     >>> text="This is an example sentence."
     >>> pre_processing(text)
-    
-    "example sentence." 
+
+    "example sentence."
     """
-    
+
     # If text is case_sensitive, do NOT change everything to lower case
     if not case_sensitive:
         text = text.lower()
@@ -114,7 +114,7 @@ def pre_processing(text, case_sensitive = False, stop_remove = True):
 
 def text_grams(text, k = 5, n = [2, 3], stop_remove = True, lemitize = False, remove_punctuation = True, \
                remove_number = True, case_sensitive = False):
-    
+
     """
     Returns top k ngrams of the text
 
@@ -122,26 +122,26 @@ def text_grams(text, k = 5, n = [2, 3], stop_remove = True, lemitize = False, re
     ----------
     text : String
         The string to be analyzed.
-        
+
     k : int
         top ngrams reguired
-        
+
     n:  list
         number of combination of words with highest frequency
-        
+
     stopwords_remove : Boolean
         Remove common stop words (ex. 'and', 'the', 'him') from `text`.
-        
+
     lemmatize : Boolean
         If True, lemmatize every word in `text`.
         More info for how lemmatize works can be found in NLTK docs.
-        
+
     remove_punctuation : Boolean
         If True, strip `text` of punctuation.
-        
+
     remove_numbers : Boolean
         If True, strip `text` of numbers.
-        
+
     case_sensitive : Boolean
         If True, text_summarize will be case sensitive (ex. "this" and
         "This" will be two separate words).
@@ -180,20 +180,20 @@ def text_grams(text, k = 5, n = [2, 3], stop_remove = True, lemitize = False, re
     }
     pd.DataFrame.from_dict(grams)
     """
-    
+
     # Check all variables are valid:
-    
+
     # Check parameters are boolean
-    if type(stop_remove) != bool or type(remove_punctuation) != bool or type(remove_number) != bool or type(case_sensitive) != bool: 
+    if type(stop_remove) != bool or type(remove_punctuation) != bool or type(remove_number) != bool or type(case_sensitive) != bool:
         raise ValueError("Test parameters must be boolean.")
     # Check if text is a string
     if type(text) != str:
         raise ValueError("Input must be a string")
     # Check text is not empty
-    if not text.split(): 
+    if not text.split():
         raise ValueError("Input text is empty.")
     # Check k >= 0
-    if k < 0: 
+    if k < 0:
         raise ValueError("k must be 0 or greater")
     # Check n is not empty
     if not n:
@@ -202,52 +202,51 @@ def text_grams(text, k = 5, n = [2, 3], stop_remove = True, lemitize = False, re
     if len(n) > 0 and any(i < 0 for i in n):
         raise ValueError("Values of n must be greater than 0")
 
-    
-    
-    
+
+
+
     # Initialize variables
     ngrams_list = []
     ngrams_dfs = []
     lbls = [str(num_grams) + "gram" for num_grams in n]  # Make labels for every n grams user wants
-    
+
     # Clean and pre-process text
     clean_text = clean(text, remove_punctuation, remove_number)
     clean_text = pre_processing(clean_text, case_sensitive, stop_remove)
-    
+
     # Split input text on sentence endings (ie. . or ? or !)
     split_sentences = list(filter(None, re.split("[,.!?:]+", clean_text)))
     #print(split_sentences)
-    
+
     # Function must find most frequent gram for every ngram in n
     for num_grams in n:
         ngrams = collect.Counter()
-        
+
         # Need to find grams for every sentence individually (because grams shouldn't take into account two words that
-        # are beside each other, but in two different sentences) 
-        for sentence in split_sentences: 
+        # are beside each other, but in two different sentences)
+        for sentence in split_sentences:
             #print(sentence)
             split_words = sentence.split()
-            #print(split_words)        
+            #print(split_words)
             list_of_grams = [split_words[i:i + num_grams] for i in range(len(split_words) - num_grams + 1)]  # General way to split a sentence into n grams
             #print(list_of_grams)
-            
+
             # Update the counter +1 for every instance of a gram
             ngrams.update([tuple(item) for item in list_of_grams])
-            
-        # Append the k most common grams    
+
+        # Append the k most common grams
         ngrams_list.append(ngrams.most_common(k))
-    
+
     # Create the final dataframe
-    for list_of_top_grams in ngrams_list: 
+    for list_of_top_grams in ngrams_list:
         ngrams_dfs.append(pd.DataFrame.from_records([list(i) for i in list_of_top_grams], columns = [lbls[0], "Number of Instances"]))
         lbls.pop(0)
-        
+
     if len(n) == 1:
         final_df = ngrams_dfs[0]
     else:
         for i in range(len(ngrams_dfs)-1):
             final_df = pd.concat([ngrams_dfs[0].reset_index(drop = True), ngrams_dfs[i+1]], axis = 1)
-    
+
 
     return final_df
-
