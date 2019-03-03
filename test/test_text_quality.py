@@ -40,14 +40,14 @@ def test_output_type():
     text = "This str has words spelllll wrong. This string has a slag word shitty."
     output = text_quality(text)
     assert(type(output) == type(pd.DataFrame()))
-    
-    
+
+
 def test_output_types():
 
     """
     Test if input is not empty
     """
-    
+
     text = "This str has words spelllll wrong. This string has a slag word shitty."
     output = text_quality(text)
     assert type(output['spell_error'][0]) == type(set())
@@ -81,14 +81,14 @@ def verify_input2():
 
     text = ""
     output = text_quality(text)
-    
+
     assert output['spell_error'][0] == set()
     assert output['count_spell_error'][0] == 0
     assert output['proportion_spell_error'][0] == 0.0
     assert output['toxic_words'][0] == set()
     assert output['count_toxic_words'][0] == 0
     assert output['proportion_toxic_words'][0] == 0.0
-    
+
 
 def verify_output1():
 
@@ -110,14 +110,14 @@ def verify_output2():
     """
     text = "This string is correct."
     output = text_quality(text)
-    
+
     assert output['spell_error'][0] == set()
     assert output['count_spell_error'][0] == 0
     assert output['proportion_spell_error'][0] == 0.0
     assert output['toxic_words'][0] == set()
     assert output['count_toxic_words'][0] == 0
     assert output['proportion_toxic_words'][0] == 0.0
-    
+
 
 def verify_output3():
 
@@ -126,14 +126,14 @@ def verify_output3():
     """
     text = "This string is correct and has pronouns Harjyot, Alex, Yenan."
     output = text_quality(text)
-    
+
     assert output['spell_error'][0] == set()
     assert output['count_spell_error'][0] == 0
     assert output['proportion_spell_error'][0] == 0.0
     assert output['toxic_words'][0] == set()
     assert output['count_toxic_words'][0] == 0
     assert output['proportion_toxic_words'][0] == 0.0
-    
+
 def verify_output4():
 
     """

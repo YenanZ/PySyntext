@@ -65,9 +65,6 @@ def clean(text):
 
 
 
-    ----------
-
-
 
     text : str
 

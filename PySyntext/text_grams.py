@@ -183,9 +183,6 @@ def text_grams(text, k = 5, n = [2, 3], stop_remove = True, lemitize = False, re
 
     # Check all variables are valid:
 
-    # Check parameters are boolean
-    if type(stop_remove) != bool or type(remove_punctuation) != bool or type(remove_number) != bool or type(case_sensitive) != bool:
-        raise ValueError("Test parameters must be boolean.")
     # Check if text is a string
     if type(text) != str:
         raise ValueError("Input must be a string")
