@@ -1,8 +1,10 @@
 # PySyntext
 
-<img src="logo.PNG" width="100">
+<img src="img/logo.PNG" align="right" height="150" width="150"/>
 
-Team Members
+Text Summarization in Python
+
+## Contributors
 
 |Name | Github |
 |---|---|
@@ -12,7 +14,7 @@ Team Members
 
 ## Summary
 
-There are many packages that cover summary statistics for numerical data. However, when it comes to text data, there is a lack of selection for packages of similar functionality. Our group would like to tackle this problem by creating `PySyntext`. This package will allow users to input passages and receive summary information and sentiment analysis on the text, giving the user valuable information on how best to proceed with their data.
+There are many packages that cover summary statistics for numerical data. However, when it comes to text data, there is a lack of selection for packages of similar functionality. Our group would like to tackle this problem by creating `PySyntext`. This package will allow users to input passages and receive summary information and quality analysis of the text, giving the user valuable information on how best to proceed with their data.
 
 Sample functionality included in this package for a given text passage:
 
@@ -186,7 +188,12 @@ Output
 
 <br>
 
-### Dependencies
+## Test Coverage:
+
+![](img\PySyntext_Coverage.PNG)
+
+
+## Dependencies
 
 * pandas
 * numpy
