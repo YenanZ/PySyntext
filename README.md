@@ -190,7 +190,7 @@ Output
 
 ## Test Coverage:
 
-![](img\PySyntext_Coverage.PNG)
+![](img/PySyntext_Coverage.PNG)
 
 
 ## Dependencies
