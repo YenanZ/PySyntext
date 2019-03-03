@@ -70,7 +70,7 @@ def test_output_types():
 
 
 
-def verify_input1():
+def test_verify_input1():
 
     """
     Test if input string is valid (not numeric)
@@ -84,7 +84,7 @@ def verify_input1():
 
 
 
-def verify_input2():
+def test_verify_input2():
 
     """
     Test if input is not empty
@@ -101,7 +101,7 @@ def verify_input2():
     assert output['proportion_toxic_words'][0] == 0.0
     
 
-def verify_output1():
+def test_verify_output1():
 
     """
     Test if input is not empty
@@ -112,7 +112,7 @@ def verify_output1():
     assert output['proportion_toxic_words'][0] >= 0.0
 
 
-def verify_output2():
+def test_verify_output2():
 
     """
     Test if input is not empty
@@ -128,7 +128,7 @@ def verify_output2():
     assert output['proportion_toxic_words'][0] == 0.0
     
 
-def verify_output3():
+def test_verify_output3():
 
     """
     Test if input is not empty
@@ -143,7 +143,7 @@ def verify_output3():
     assert output['count_toxic_words'][0] == 0
     assert output['proportion_toxic_words'][0] == 0.0
     
-def verify_output4():
+def test_verify_output4():
 
     """
     Test if input is not empty
@@ -157,3 +157,18 @@ def verify_output4():
     assert output['toxic_words'][0] == {'shitty'}
     assert output['count_toxic_words'][0] == 1
     assert ((output['proportion_toxic_words'][0]>=0.076923-0.2) and (output['proportion_toxic_words'][0]<=0.076923+0.2))
+    
+def test_verify_output5():
+
+    """
+    Test if input is not empty
+    """
+    text = "this is Jim and Alex writing a package."
+    output = text_quality(text)
+
+    assert output['spell_error'][0] == set()
+    assert output['count_spell_error'][0] == 0
+    assert output['proportion_spell_error'][0] == 0.0
+    assert output['toxic_words'][0] == set()
+    assert output['count_toxic_words'][0] == 0
+    assert output['proportion_toxic_words'][0] == 0.0

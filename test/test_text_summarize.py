@@ -42,7 +42,7 @@ def test_branches():
     assert round(ex_output.avg_sentence_len[0], 2) > 20 and round(ex_output.avg_sentence_len[0], 2) < 22
 
 
-def verify_output():
+def test_verify_output():
     ex_passage = "This is the first sentence in this paragraph. This is the second sentence. This is the third."
     ex_output = text_summarize(ex_passage)
     assert type(ex_output) == type(pd.DataFrame())
@@ -54,12 +54,24 @@ def verify_output():
     assert type(ex_output.avg_sentence_len[0]) == numpy.float64 and ex_output.avg_sentence_len[0] >= 0
 
 
-def verify_input():
+def test_verify_input():
     # Test if input is string
     test = 100
     with pytest.raises(ValueError) as e:
         text_summarize(test)
     assert str(e.value) == "Input must be a string"
+    
+def test_verify_input2():
+    # Test if parameters are boolean
+    ex_passage = "This is the first sentence in this paragraph. This is the second sentence. This is the third."
+    with pytest.raises(ValueError) as e:
+        text_summarize(ex_passage, 13)
+    assert str(e.value) == "Test parameters must be boolean."
+    
+def test_all_stop_words():
+    # Test if text is empty after stopword removal
+    ex_passage = "this i in so"
+    assert text_summarize(ex_passage, stop_remove = True).word_count[0] == 0 
 
 def test_word_count():
     # Test if special characters counts as words
