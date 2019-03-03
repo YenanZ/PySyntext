@@ -23,31 +23,6 @@ import pytest
 #nltk.download("stopwords")
 #nltk.download('averaged_perceptron_tagger')
 
-def load_words(path):
-    """
-    Loads words from a text file
-    Parameters
-    ----------
-    path : str
-        
-        path of the text file
-    Returns
-    -------
-    set
-        A set of all words in the text file
-    Examples
-    --------
-    >>> load_words('resources/words.txt')
-    {Aar,
-     Aara,
-     Aarau,
-    ....}
-    """
-    
-    with open(path) as word_file:
-        valid_words = set(word_file.read().split())
-       
-    return valid_words
 
 def clean(text, remove_punctuation = True, remove_number = True):
     """
@@ -231,6 +206,7 @@ def text_grams(text, k = 5, n = [2, 3], stop_remove = True, lemitize = False, re
     
     
     # Initialize variables
+    final_df = pd.DataFrame()
     ngrams_list = []
     ngrams_dfs = []
     lbls = [str(num_grams) + "gram" for num_grams in n]  # Make labels for every n grams user wants
@@ -270,9 +246,8 @@ def text_grams(text, k = 5, n = [2, 3], stop_remove = True, lemitize = False, re
     if len(n) == 1:
         final_df = ngrams_dfs[0]
     else:
-        for i in range(len(ngrams_dfs)-1):
-            final_df = pd.concat([ngrams_dfs[0].reset_index(drop = True), ngrams_dfs[i+1]], axis = 1)
+        for i in range(len(ngrams_dfs)):
+            final_df = pd.concat([final_df, ngrams_dfs[i].reset_index(drop = True)], axis = 1)
     
 
     return final_df
-
