@@ -58,10 +58,10 @@ def load_words(path):
     ....}
     """
 
-    with open(path) as word_file:
-        valid_words = set(word_file.read().lower().split())
-
-    return valid_words
+    #with open(path) as word_file:
+    #    valid_words = set(word_file.read().lower().split())
+    #
+    #return valid_words
 
 
 
