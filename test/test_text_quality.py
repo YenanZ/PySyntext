@@ -134,6 +134,7 @@ def verify_output3():
     assert output['count_toxic_words'][0] == 0
     assert output['proportion_toxic_words'][0] == 0.0
 
+
 def verify_output4():
 
     """
