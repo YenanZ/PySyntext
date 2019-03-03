@@ -29,7 +29,7 @@ def test_normal_function():
     assert set(ex_output.least_common[0]) == set(["first", "in", "paragraph", "second", "third"])
     assert round(ex_output.avg_word_len[0], 2) == 4.35
     assert round(ex_output.avg_sentence_len[0], 2) > 29 and round(ex_output.avg_sentence_len[0], 2) < 32
-    
+
 def test_branches():
     ex_passage = "This is the first sentence in this paragraph. This is the second sentence. This is the third."
     ex_output = text_summarize(ex_passage, stop_remove = True, \
@@ -37,14 +37,14 @@ def test_branches():
     assert ex_output.word_count[0] == 9
     assert ex_output.sentence_count[0] == 3
     assert ex_output.most_common[0] == ["This"]
-    assert set(ex_output.least_common[0]) == set(["first", "in", "paragraph", "second", "third"])
-    assert round(ex_output.avg_word_len[0], 2) == 4.35
-    assert round(ex_output.avg_sentence_len[0], 2) > 29 and round(ex_output.avg_sentence_len[0], 2) < 32
+    assert set(ex_output.least_common[0]) == set(["first","paragraph", "second", "third"])
+    assert (ex_output.avg_word_len[0] >=5.888889-0.2 and ex_output.avg_word_len[0] <=5.888889+0.2)
+    assert round(ex_output.avg_sentence_len[0], 2) > 20 and round(ex_output.avg_sentence_len[0], 2) < 22
 
 
-def verify_output(x):
+def verify_output():
     ex_passage = "This is the first sentence in this paragraph. This is the second sentence. This is the third."
-    ex_output = text_summarize(x)
+    ex_output = text_summarize(ex_passage)
     assert type(ex_output) == type(pd.DataFrame())
     assert type(ex_output.word_count[0]) == numpy.int64 and ex_output.word_count[0] >= 0
     assert type(ex_output.sentence_count[0]) == numpy.int64 and ex_output.word_count[0] >= 0
@@ -115,7 +115,7 @@ def test_least_common():
     assert text_summarize(test).least_common[0] == ['common']
     # Test if numbers count as words
     test = "10 people"
-    assert text_summarize(test).least_common[0] == ['10', 'people']
+    assert text_summarize(test).least_common[0] == ['people']
 
 def test_avg_word_len():
     # Test if punctuation/special characters count
@@ -126,7 +126,6 @@ def test_avg_word_len():
     assert text_summarize(test).avg_word_len[0] == 6
 
 def test_avg_sentence_len():
-    assert text_summarize(test).avg_sentence_len[0] == 0
     # Test if punctuation/special characters count
     test = "this + that! this and that? this and sometimes that."
-    assert text_summarize(test).avg_sentence_len[0] == 3
+    assert text_summarize(test).avg_sentence_len[0] >= 15.5 and text_summarize(test).avg_sentence_len[0] <= 17.5
