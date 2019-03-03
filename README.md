@@ -19,8 +19,9 @@ There are many packages that cover summary statistics for numerical data. Howeve
 Sample functionality included in this package for a given text passage:
 
 * Most common word
+* Average word length
 * Most frequent n-gram
-* Overall Sentiment (Positive, Negative)
+* Toxicity in text
 * Number of spelling mistakes
 * ...etc.
 
@@ -35,7 +36,7 @@ Sample functionality included in this package for a given text passage:
 
 
 
-## Functions Include:
+## Functionality and Usage:
 
 #### Function 1: `text_summarize`
 
@@ -60,16 +61,14 @@ Sample functionality included in this package for a given text passage:
 | Name | Type | Default|
 |---|---|---|
 | text | str | NA |  
-| stopwords_remove | boolean | False |
-| lemmatize | boolean | False |
+| stop_remove | boolean | False |
 | remove_punctuation | boolean | True |
-| remove_numbers |  boolean | True |
+| remove_number |  boolean | True |
 | case_sensitive |  boolean | False |
-| gibberish_remove |  boolean | True  |
 
 <br>
 
-#### Example:
+#### Usage:
 
 ```
 import PySyntext
@@ -110,14 +109,15 @@ The function takes in the following arguments:
 | text | str | NA |
 | k | int | 5 |
 | n | int,list | (2,3) |
-| stopwords_remove | boolean | True |
-| lemitize | boolean | False |
+| stop_remove | boolean | True |
 | remove_punctuation | boolean | True |
-| remove_numbers |  boolean | True |
+| remove_number |  boolean | True |
 | case_sensitive |  boolean | False |
-| gibberish_remove |  boolean | True  |
+
 
 <br>
+
+#### Usage:
 
 ```
 import PySyntext
@@ -169,6 +169,8 @@ The function takes in the following arguments:
 | text | str | NA |
 
 <br>
+
+#### Usage:
 
 ```
 import PySyntext
