@@ -8,9 +8,9 @@ import numpy
 sys.path.insert(0, os.path.abspath(".."))
 from PySyntext.text_summarize import text_summarize
 
-ex_passage = "This is the first sentence in this paragraph. This is the second sentence. This is the third."
+#ex_passage = "This is the first sentence in this paragraph. This is the second sentence. This is the third."
 
-ex_output = {
+ex = {
     'word_count' : 17,
     'sentence_count' : 3,
     'most_common' : [['This']],
@@ -18,9 +18,10 @@ ex_output = {
     'avg_word_len' : 4.35,
     'avg_sentence_len' : 5.67
 }
-ex_output = pd.DataFrame.from_dict(ex_output)
+ex = pd.DataFrame.from_dict(ex)
 
 def test_normal_function():
+    ex_passage = "This is the first sentence in this paragraph. This is the second sentence. This is the third."
     ex_output = text_summarize(ex_passage, stop_remove = False)
     assert ex_output.word_count[0] == 17
     assert ex_output.sentence_count[0] == 3
@@ -28,9 +29,21 @@ def test_normal_function():
     assert set(ex_output.least_common[0]) == set(["first", "in", "paragraph", "second", "third"])
     assert round(ex_output.avg_word_len[0], 2) == 4.35
     assert round(ex_output.avg_sentence_len[0], 2) > 29 and round(ex_output.avg_sentence_len[0], 2) < 32
+    
+def test_branches():
+    ex_passage = "This is the first sentence in this paragraph. This is the second sentence. This is the third."
+    ex_output = text_summarize(ex_passage, stop_remove = True, \
+                               remove_punctuation = False, remove_number = False, case_sensitive = True)
+    assert ex_output.word_count[0] == 9
+    assert ex_output.sentence_count[0] == 3
+    assert ex_output.most_common[0] == ["This"]
+    assert set(ex_output.least_common[0]) == set(["first", "in", "paragraph", "second", "third"])
+    assert round(ex_output.avg_word_len[0], 2) == 4.35
+    assert round(ex_output.avg_sentence_len[0], 2) > 29 and round(ex_output.avg_sentence_len[0], 2) < 32
 
 
 def verify_output(x):
+    ex_passage = "This is the first sentence in this paragraph. This is the second sentence. This is the third."
     ex_output = text_summarize(x)
     assert type(ex_output) == type(pd.DataFrame())
     assert type(ex_output.word_count[0]) == numpy.int64 and ex_output.word_count[0] >= 0
@@ -40,7 +53,6 @@ def verify_output(x):
     assert type(ex_output.avg_word_len[0]) == numpy.float64 and ex_output.avg_word_len[0] >= 0
     assert type(ex_output.avg_sentence_len[0]) == numpy.float64 and ex_output.avg_sentence_len[0] >= 0
 
-verify_output(ex_passage)
 
 def verify_input():
     # Test if input is string
@@ -98,9 +110,6 @@ def test_least_common():
     # Test multiple least common words
     test = "repeating repeating words words"
     assert set(text_summarize(test).least_common[0]) == set(["repeating", "words"])
-    # Test blank
-    test = ""
-    assert text_summarize(test).least_common[0] == []
     # Check if punctuation/special characters count
     test = "most most most common! +"
     assert text_summarize(test).least_common[0] == ['common']
@@ -109,9 +118,6 @@ def test_least_common():
     assert text_summarize(test).least_common[0] == ['10', 'people']
 
 def test_avg_word_len():
-    # Test blank
-    test = ""
-    assert text_summarize(test).avg_word_len[0] == 0
     # Test if punctuation/special characters count
     test = "this + that!"
     assert text_summarize(test).avg_word_len[0] == 4
@@ -120,8 +126,6 @@ def test_avg_word_len():
     assert text_summarize(test).avg_word_len[0] == 6
 
 def test_avg_sentence_len():
-    # Test blank
-    test = ""
     assert text_summarize(test).avg_sentence_len[0] == 0
     # Test if punctuation/special characters count
     test = "this + that! this and that? this and sometimes that."
