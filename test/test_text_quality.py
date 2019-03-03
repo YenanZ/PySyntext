@@ -32,35 +32,24 @@ from PySyntext.text_quality import text_quality
 
 
 
-# sample input
-x = "This str has words spelllll wrong. This string has a slag word shitty."
-output = text_quality(x)
-
-# sample output
-df = pd.DataFrame({'spell_error': [{'spelllll'}],
-                   'count_spell_error': 1,
-                   'proportion_spell_error': 0.07692307692307693,
-                   'toxic_words': [{'shitty'}],
-                   'count_toxic_words': 1,
-                   'proportion_toxic_words': 0.07692307692307693})
-
-
-
 def test_output_type():
 
     """
     Test that output is of type DataFrame
     """
-
+    text = "This str has words spelllll wrong. This string has a slag word shitty."
+    output = text_quality(text)
     assert(type(output) == type(pd.DataFrame()))
-    
-    
+
+
 def test_output_types():
 
     """
     Test if input is not empty
     """
 
+    text = "This str has words spelllll wrong. This string has a slag word shitty."
+    output = text_quality(text)
     assert type(output['spell_error'][0]) == type(set())
     assert type(output['count_spell_error'][0]) == numpy.int64
     assert type(output['proportion_spell_error'][0]) == numpy.float64
@@ -92,23 +81,25 @@ def test_verify_input2():
 
     text = ""
     output = text_quality(text)
-    
+
     assert output['spell_error'][0] == set()
     assert output['count_spell_error'][0] == 0
     assert output['proportion_spell_error'][0] == 0.0
     assert output['toxic_words'][0] == set()
     assert output['count_toxic_words'][0] == 0
     assert output['proportion_toxic_words'][0] == 0.0
-    
+
 
 def test_verify_output1():
 
     """
     Test if input is not empty
     """
+    text = "This str has words spelllll wrong. This string has a slag word shitty."
+    output = text_quality(text)
     assert output['count_spell_error'][0] >=0
     assert output['proportion_spell_error'][0] >= 0.0
-    assert output['toxic_words'][0] >= set()
+    assert output['count_toxic_words'][0] >= 0
     assert output['proportion_toxic_words'][0] >= 0.0
 
 
@@ -119,14 +110,14 @@ def test_verify_output2():
     """
     text = "This string is correct."
     output = text_quality(text)
-    
+
     assert output['spell_error'][0] == set()
     assert output['count_spell_error'][0] == 0
     assert output['proportion_spell_error'][0] == 0.0
     assert output['toxic_words'][0] == set()
     assert output['count_toxic_words'][0] == 0
     assert output['proportion_toxic_words'][0] == 0.0
-    
+
 
 def test_verify_output3():
 
@@ -135,14 +126,14 @@ def test_verify_output3():
     """
     text = "This string is correct and has pronouns Harjyot, Alex, Yenan."
     output = text_quality(text)
-    
+
     assert output['spell_error'][0] == set()
     assert output['count_spell_error'][0] == 0
     assert output['proportion_spell_error'][0] == 0.0
     assert output['toxic_words'][0] == set()
     assert output['count_toxic_words'][0] == 0
     assert output['proportion_toxic_words'][0] == 0.0
-    
+
 def test_verify_output4():
 
     """
@@ -157,7 +148,7 @@ def test_verify_output4():
     assert output['toxic_words'][0] == {'shitty'}
     assert output['count_toxic_words'][0] == 1
     assert ((output['proportion_toxic_words'][0]>=0.076923-0.2) and (output['proportion_toxic_words'][0]<=0.076923+0.2))
-    
+
 def test_verify_output5():
 
     """
